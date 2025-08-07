@@ -121,27 +121,3 @@ resource "helm_release" "multi_container_app" {
   ]
 }
 
-module "secret" {
-  source = "github.com/ministryofjustice/cloud-platform-terraform-secrets-manager?ref=3.0.4" # use the latest release
-
-  # EKS configuration
-  eks_cluster_name = var.eks_cluster_name
-
-  # Secrets configuration
-  secrets = {
-    "test" = {
-      description             = "test secret" # required
-      recovery_window_in_days = 7                # required
-      k8s_secret_name         = "test-secret" # the name of the secret in k8s
-    },
-  }
-
-  # team_name              = "test"
-  # application            = "test"
-  # business_unit          = "test"
-  # is_production          = "no"
-  # namespace              = "starter-pack-0"
-  # environment_name       = "test"
-  # infrastructure_support = "test"
-  # eks_cluster_name       = "live"
-}
