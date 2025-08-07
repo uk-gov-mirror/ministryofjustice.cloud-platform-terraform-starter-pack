@@ -136,12 +136,12 @@ module "secret" {
     },
   }
 
-  team_name              = "test"
-  application            = "test"
-  business_unit          = "test"
-  is_production          = "no"
-  namespace              = "starter-pack-0"
-  environment_name       = "test"
-  infrastructure_support = "test"
-  eks_cluster_name       = "live"
+  # team_name              = "test"
+  # application            = "test"
+  # business_unit          = "test"
+  # is_production          = "no"
+  # namespace              = "starter-pack-0"
+  # environment_name       = "test"
+  # infrastructure_support = "test"
+  # eks_cluster_name       = "live"
 }
