@@ -10,7 +10,6 @@ data "aws_eks_cluster" "eks_cluster" {
 
 data "aws_caller_identity" "current" {}
 
-# Create a Secrets Manager secret (manually add values via console if you want)
 resource "aws_secretsmanager_secret" "test" {
   name                    = "test-es-plain-secret"
   recovery_window_in_days = 7
@@ -20,14 +19,13 @@ resource "aws_secretsmanager_secret" "test" {
   }
 }
 
-# Create SecretStore
 resource "kubernetes_manifest" "secret_store" {
   manifest = {
     apiVersion = "external-secrets.io/v1beta1"
     kind       = "SecretStore"
     metadata = {
       name      = "test-secret-store"
-      namespace = "external-secrets-operator"
+      namespace = "starter-pack-0" 
       labels = {
         "managed/by" = "terraform"
       }
@@ -37,27 +35,19 @@ resource "kubernetes_manifest" "secret_store" {
         aws = {
           service = "SecretsManager"
           region  = data.aws_region.current.name
-        #   auth = {
-        #     jwt = {
-        #       serviceAccountRef = {
-        #         name = "external-secrets-irsa-sa" # Replace with your IRSA service account name
-        #       }
-        #     }
-        #   }
         }
       }
     }
   }
 }
 
-# Create ExternalSecret
 resource "kubernetes_manifest" "external_secret" {
   manifest = {
     apiVersion = "external-secrets.io/v1beta1"
     kind       = "ExternalSecret"
     metadata = {
       name      = "test-external-secret"
-      namespace = "external-secrets-operator"
+      namespace = "starter-pack-0" 
       labels = {
         "managed/by" = "terraform"
       }
