@@ -44,7 +44,7 @@ variable "helloworld_version" {
 
 variable "multi_container_app_version" {
   type    = string
-  default = "0.3.6"
+  default = "0.3.7"
 }
 
 variable "starter_pack_count" {
