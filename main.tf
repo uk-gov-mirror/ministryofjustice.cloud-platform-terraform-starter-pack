@@ -119,5 +119,24 @@ resource "helm_release" "multi_container_app" {
       value = var.enable_postgres_container ? "postgresurl-secret" : var.rds_secret
     }
   ]
+
+  set = [
+    {
+      name  = "postgresql.image.registry"
+      value = "docker.io"
+    },
+    {
+      name  = "postgresql.image.repository"
+      value = "bitnamilegacy/postgresql"
+    },
+    {
+      name  = "postgresql.image.tag"
+      value = "11.2.0-debian-9-r49"
+    },
+    {
+      name  = "postgresql.global.security.allowInsecureImages"
+      value = "true"
+    }
+  ]
 }
 
