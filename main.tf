@@ -131,7 +131,7 @@ resource "helm_release" "multi_container_app" {
     },
     {
       name  = "postgresql.image.tag"
-      value = "11.2.0-debian-9-r49"
+      value = "11.8.0"
     },
     {
       name  = "postgresql.global.security.allowInsecureImages"
